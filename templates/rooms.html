@@ -1,0 +1,42 @@
+{% load static %}
+<!-- rooms.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Rooms</h1>
+        <ul id="roomList"></ul>
+        <button id="createRoomBtn">Create Room</button>
+    </div>
+    <div id="createRoomModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Room</h2>
+            <form id="createRoomForm">
+                <div class="form-group">
+                    <label for="roomName">Room Name:</label>
+                    <input type="text" id="roomName" name="roomName" required>
+                </div>
+                <div class="form-group">
+                    <label for="roomTopic">Room Topic:</label>
+                    <input type="text" id="roomTopic" name="roomTopic">
+                </div>
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal"></div>
+</body>
+</html>
+<script src="{% static 'app.js' %}"></script>
+    <script>
+        if(!localStorage.getItem('userid')){
+            window.location.href  = `${BASE_URL}/ui/login/`;
+        }
+</script>

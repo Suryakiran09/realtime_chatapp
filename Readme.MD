@@ -15,7 +15,7 @@
 ## Introduction
 My Application is a web service that provides various features using RESTful APIs. This document serves as a guide to install, run, and interact with the application using Docker and Docker Compose. 
 
-### `I have made this application Deployment ready for both Heroku and Docker image deployment but those applications are asking for Credit Card I couldnt deploy it.`
+### `I have made this application Deployment ready for both Heroku and Docker image deployment but those applications are asking for Credit Card because of that I couldnt deploy this application.`
 
 ## Technologies used
 

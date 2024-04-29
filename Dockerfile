@@ -11,9 +11,9 @@ WORKDIR /almabaseca
 # Copy the current directory contents into the container at /tanxfi_task
 COPY . /almabaseca
 
-RUN python -m pip install -U 'channels[daphne]'
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python -m pip install -U 'channels[daphne]'
 
 # Apply database migrations
 RUN python manage.py makemigrations

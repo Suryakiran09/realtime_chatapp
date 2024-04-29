@@ -1,15 +1,5 @@
 version: '3'
 services:
-  db:
-    image: mysql:8
-    ports:
-      - '10647:10647'
-    environment:
-      MYSQL_DATABASE: 'defaultdb'
-      MYSQL_USER: 'avnadmin'
-      MYSQL_PASSWORD: 'AVNS_1CD1_0sTSPPdfVpjHNt'
-      MYSQL_ROOT_PASSWORD: 'password'
-      MYSQL_HOST: 'mysql-3b8b5689-starshipsn09-ed9f.d.aivencloud.com'
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -17,8 +7,6 @@ services:
       - .:/almabaseca
     ports:
       - 8000:8000
-    depends_on:
-      - db
   redis:
     image: redis:6-alpine
     ports:

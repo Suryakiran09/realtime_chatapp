@@ -12,12 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-import environ
-
-env = environ.Env()
-
-environ.Env.read_env()
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -174,7 +168,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from urllib.parse import urlparse
 
 import urllib
-redis_url = env('REDIS_URL')
+redis_url = os.environ.get('REDIS_URL')
 
 if redis_url:
     imported_urlparse = urllib.parse.urlparse("redis://red-consd621hbls73fpvscg:6379")

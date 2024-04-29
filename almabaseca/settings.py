@@ -99,27 +99,27 @@ WSGI_APPLICATION = 'almabaseca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('MYSQL_DATABASE'),
-#         'USER': config('MYSQL_USER'),
-#         'PASSWORD': config('MYSQL_PASSWORD'),
-#         'HOST': config('DB_HOST', 'db'),  # Use 'db' as default from .env
-#         'PORT': config('DB_PORT', '3306'),  # Use '3306' as default from .env
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_1CD1_0sTSPPdfVpjHNt',
+        'HOST': 'mysql-3b8b5689-starshipsn09-ed9f.d.aivencloud.com',
+        'PORT': 10647,
+    }
+}
 
 
 # Password validation
@@ -171,14 +171,29 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+from urllib.parse import urlparse
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+redis_url = os.environ.get('REDIS_URL', '')
+if redis_url:
+    parsed_uri = urlparse(redis_url)
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [(parsed_uri.hostname, parsed_uri.port)],
+                "password": parsed_uri.password,
+            },
         },
-    },
-}
+    }
+else:
+    print("Warning: No REDIS_URL configured.")
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [("redis", 6379)],
+            },
+        },
+    }
 
 ASGI_APPLICATION = "almabaseca.asgi.application"

@@ -12,6 +12,9 @@
 - [Endpoints](#endpoints)
 - [Images](#images)
 
+## Introduction
+My Application is a web service that provides various features using RESTful APIs. This document serves as a guide to install, run, and interact with the application using Docker and Docker Compose.
+
 ## Technologies used
 
 - Django
@@ -77,9 +80,6 @@ git clone https://github.com/Suryakiran09/realtime_chatapp.git
 ```shell
 cd almabaseca
 ```
-
-## Introduction
-My Application is a web service that provides various features using RESTful APIs. This document serves as a guide to install, run, and interact with the application using Docker and Docker Compose.
 
 ## Installation
 To get started with the application, you need to have Docker and Docker Compose installed on your system.

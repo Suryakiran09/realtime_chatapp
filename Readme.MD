@@ -13,7 +13,9 @@
 - [Images](#images)
 
 ## Introduction
-My Application is a web service that provides various features using RESTful APIs. This document serves as a guide to install, run, and interact with the application using Docker and Docker Compose.
+My Application is a web service that provides various features using RESTful APIs. This document serves as a guide to install, run, and interact with the application using Docker and Docker Compose. 
+
+### `I have made this application Deployment ready for both Heroku and Docker image deployment because those applications are asking for Credit Caed I couldnt deploy it.`
 
 ## Technologies used
 

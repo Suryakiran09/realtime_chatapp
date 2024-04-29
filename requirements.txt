@@ -13,3 +13,4 @@ dj-database-url==2.1.0
 gunicorn==21.2.0
 mysqlclient==2.2.4
 django-mysql==4.13.0
+urlparse4

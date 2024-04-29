@@ -173,15 +173,19 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from urllib.parse import urlparse
 
-redis_url = os.environ.get('REDIS_URL', '')
+import urllib
+redis_url = env('REDIS_URL')
+
 if redis_url:
-    parsed_uri = urlparse(redis_url)
+    imported_urlparse = urllib.parse.urlparse("redis://red-consd621hbls73fpvscg:6379")
+    printed_imported_urlparse = repr(imported_urlparse)
+    hostname = imported_urlparse.hostname
+    _, port = imported_urlparse.netloc.split(":")
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
             "CONFIG": {
-                "hosts": [(parsed_uri.hostname, parsed_uri.port)],
-                "password": parsed_uri.password,
+                "hosts": [(hostname, int(port))],
             },
         },
     }

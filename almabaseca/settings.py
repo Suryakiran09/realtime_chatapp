@@ -190,7 +190,6 @@ if redis_url:
         },
     }
 else:
-    print("Warning: No REDIS_URL configured.")
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
